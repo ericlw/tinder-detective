@@ -66,10 +66,11 @@ class NSASimulator:
         response = requests.post(self.BASE_URL + "auth", data=self.fb_auth)
         if response.status_code == 200:
             self.headers["X-Auth-Token"] = response.json()["token"]
+            print(self.headers["X-Auth-Token"])
             print("Authenticated to Tinder 🔒🔥")
             self.authed = True
         else:
-            raise AuthenticationError("Hey your Tinder auth didn't work. Did you put your Facebook user id and auth token into {secrets_filename}?".format(secrets_filename=SECRETS_FILENAME))
+            raise AuthenticationError("Hey your Tinder auth didn't work. Did you put your Facebook user id and auth token into SECRETS.txt?")
 
 
     def _get(self, url):
